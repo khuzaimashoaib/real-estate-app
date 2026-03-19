@@ -1,0 +1,43 @@
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import { connectDB } from "./config/db.js";
+
+// Routes
+import authRoutes from "./routes/authRoutes.js";
+// import propertyRoutes from "./routes/propertyRoutes.js";
+
+
+// Setup 
+dotenv.config();
+
+const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
+
+// // Routes
+app.use("/api/auth", authRoutes);
+// app.use("/api/properties", propertyRoutes);
+
+
+// Test Route
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`Server running on port ${PORT}`);
+});
