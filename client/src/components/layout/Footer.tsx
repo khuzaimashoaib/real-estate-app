@@ -21,7 +21,7 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="text-white font-semibold text-lg">
-                Estate<span style={{ color: "var(--gold)" }}>Hub</span>
+                bin<span style={{ color: "var(--gold)" }}>Adim</span>
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
@@ -128,7 +128,7 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-2">
               <li className="text-white/60 text-sm">Karachi, Pakistan</li>
-              <li className="text-white/60 text-sm">info@estatehub.pk</li>
+              <li className="text-white/60 text-sm">info@binadim.com</li>
               <li className="text-white/60 text-sm">+92 300 1234567</li>
             </ul>
             {/* Social Icons */}
@@ -167,9 +167,9 @@ export default function Footer() {
           className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3"
         >
           <p className="text-white/40 text-sm">
-            © 2024 EstateHub. All rights reserved.
+            © 2026 binAdim. All rights reserved.
           </p>
-          <p className="text-white/40 text-sm">Made with ❤️ in Pakistan</p>
+          <p className="text-white/40 text-sm">Made by Khuzaima Shoaib 🤍</p>
         </div>
       </div>
     </footer>
