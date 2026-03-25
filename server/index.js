@@ -6,7 +6,7 @@ import { connectDB } from "./config/db.js";
 
 // Routes
 import authRoutes from "./routes/authRoutes.js";
-// import propertyRoutes from "./routes/propertyRoutes.js";
+import propertyRoutes from "./routes/propertyRoutes.js";
 
 
 // Setup 
@@ -27,7 +27,7 @@ app.use(
 
 // // Routes
 app.use("/api/auth", authRoutes);
-// app.use("/api/properties", propertyRoutes);
+app.use("/api/properties", propertyRoutes);
 
 
 // Test Route
