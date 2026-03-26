@@ -91,7 +91,7 @@ export default function Footer() {
                   About Us
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/contact"
                   className="text-white/60 hover:text-white text-sm transition"
@@ -114,7 +114,7 @@ export default function Footer() {
                 >
                   Terms of Service
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
