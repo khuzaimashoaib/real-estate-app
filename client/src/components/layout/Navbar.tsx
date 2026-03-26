@@ -33,29 +33,25 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/properties"
-            className="text-sm no-underline hover:text-white transition"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="text-white/60 hover:text-white text-sm transition"
           >
             Properties
           </Link>
           <Link
             href="/properties?type=sale"
-            className="text-sm no-underline hover:text-white transition"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="text-white/60 hover:text-white text-sm transition"
           >
             Buy
           </Link>
           <Link
             href="/properties?type=rent"
-            className="text-sm no-underline hover:text-white transition"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="text-white/60 hover:text-white text-sm transition"
           >
             Rent
           </Link>
           <Link
             href="/about"
-            className="text-sm no-underline hover:text-white transition"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="text-white/60 hover:text-white text-sm transition"
           >
             About
           </Link>
@@ -93,8 +89,8 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="text-sm no-underline"
-                style={{ color: "rgba(255,255,255,0.8)" }}
+                className="text-sm no-underline text-white/70 hover:text-white transition"
+                // style={{ color: "rgba(255,255,255,0.8)" }}
               >
                 Login
               </Link>
