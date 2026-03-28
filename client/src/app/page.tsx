@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useAuth } from "../context/AuthContext";
+import Button from "../components/ui/Button";
 
 export default function Home() {
   const { user } = useAuth();
@@ -60,13 +61,23 @@ export default function Home() {
 
           {/* Buttons */}
           <div className="flex gap-4 flex-wrap">
-            <Link
+            <Button
+              href="/properties"
+              type="button"
+              variant="primary"
+              size="lg"
+            
+              
+            >
+              Browse Properties
+            </Button>
+            {/* <Link
               href="/properties"
               className="text-white font-semibold text-sm px-7 py-4 rounded-xl transition hover:opacity-90"
               style={{ background: "var(--orange)" }}
             >
               Browse Properties
-            </Link>
+            </Link> */}
             <Link
               href="/signup"
               className="text-white font-medium text-sm px-7 py-4 rounded-xl transition hover:bg-white/10"

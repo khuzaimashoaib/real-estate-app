@@ -20,7 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin:[
+      "http://localhost:3000",
+      "https://real-estate-app-frontend-red.vercel.app",
+    ],
     credentials: true,
   })
 );

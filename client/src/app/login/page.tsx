@@ -5,6 +5,7 @@ import Link from "next/link";
 import { api } from "@/src/utils/api";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/src/context/AuthContext";
+import Button from "@/src/components/ui/Button";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -145,7 +146,18 @@ export default function LoginPage() {
             </div>
 
             {/* Submit */}
-            <button
+
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              fullWidth
+              loading={loading}
+              className="mt-2"
+            >
+              Login
+            </Button>
+            {/* <button
               type="submit"
               disabled={loading}
               className="w-full text-white font-semibold py-3 rounded-lg transition hover:opacity-90 mt-2"
@@ -156,7 +168,7 @@ export default function LoginPage() {
               }}
             >
               {loading ? "Logging in..." : "Login"}
-            </button>
+            </button> */}
           </form>
 
           {/* Divider */}

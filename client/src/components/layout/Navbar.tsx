@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/src/context/AuthContext";
+import Button from "../ui/Button";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,6 +32,7 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
+          
           <Link
             href="/properties"
             className="text-white/60 hover:text-white text-sm transition"
@@ -70,9 +72,11 @@ export default function Navbar() {
                 href="/dashboard"
                 className="text-sm no-underline"
                 style={{ color: "rgba(255,255,255,0.8)" }}
+                
               >
                 👋 {user.name.split(" ")[0]}
               </Link>
+              
               <button
                 onClick={logout}
                 className="text-sm px-4 py-2 rounded-lg cursor-pointer hover:opacity-80 transition"
@@ -94,13 +98,14 @@ export default function Navbar() {
               >
                 Login
               </Link>
-              <Link
+              <Button variant="primary" size="md" fullWidth children="List Property" href="/signup"/>  
+              {/* <Link
                 href="/signup"
                 className="text-sm font-medium px-4 py-2 rounded-lg text-white hover:opacity-90 transition no-underline"
                 style={{ background: "var(--orange)" }}
               >
                 List Property
-              </Link>
+              </Link> */}
             </>
           )}
         </div>

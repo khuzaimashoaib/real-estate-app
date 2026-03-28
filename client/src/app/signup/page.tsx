@@ -5,6 +5,7 @@ import Link from "next/link";
 import { api } from "@/src/utils/api";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/src/context/AuthContext";
+import Button from "@/src/components/ui/Button";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -190,7 +191,18 @@ export default function SignupPage() {
             </div>
 
             {/* Submit */}
-            <button
+
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              fullWidth
+              loading={loading}
+              className="mt-2"
+            >
+              Create Account
+            </Button>
+            {/* <button
               type="submit"
               disabled={loading}
               className="w-full text-white font-semibold py-3 rounded-lg transition hover:opacity-90 mt-2"
@@ -201,7 +213,7 @@ export default function SignupPage() {
               }}
             >
               {loading ? "Creating Account..." : "Create Account"}
-            </button>
+            </button> */}
           </form>
 
           {/* Divider */}
