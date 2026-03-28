@@ -1,10 +1,11 @@
+import { connectDB } from "../config/db.js";
 import Property from "../models/Property.js";
 
 // @desc    Get all properties
 // @route   GET /api/properties
 export const getProperties = async (req, res) => {
   try {
-    
+    await connectDB();
     const { type, category, city, minPrice, maxPrice } = req.query;
 
     let filter = {};
@@ -21,7 +22,7 @@ export const getProperties = async (req, res) => {
     const properties = await Property.find(filter)
       .populate("owner", "name email phone avatar")
       .sort({ createdAt: -1 });
- 
+
     res.status(200).json({
       success: true,
       count: properties.length,
@@ -169,13 +170,11 @@ export const deleteProperty = async (req, res) => {
       success: true,
       message: "Property deleted successfully",
     });
-
   } catch (error) {
-     res.status(500).json({
+    res.status(500).json({
       success: false,
       message: error.message,
     });
-
   }
 };
 
@@ -190,7 +189,7 @@ export const toggleFavourite = async (req, res) => {
 
     if (isFavourite) {
       user.favourites = user.favourites.filter(
-        (id) => id.toString() !== propertyId
+        (id) => id.toString() !== propertyId,
       );
     } else {
       user.favourites.push(propertyId);
