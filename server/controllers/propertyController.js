@@ -5,7 +5,7 @@ import Property from "../models/Property.js";
 // @route   GET /api/properties
 export const getProperties = async (req, res) => {
   try {
-    await connectDB();
+    // await connectDB();
     const { type, category, city, minPrice, maxPrice } = req.query;
 
     let filter = {};
