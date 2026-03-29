@@ -8,9 +8,10 @@ import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
 
-
-// Setup 
-dotenv.config();
+// Setup
+dotenv.config({
+  quiet: true,
+});
 
 const app = express();
 
@@ -20,18 +21,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin:[
+    origin: [
       "http://localhost:3000",
       "https://real-estate-app-frontend-red.vercel.app",
     ],
     credentials: true,
-  })
+  }),
 );
 
 // // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 
+connectDB();
 
 // Test Route
 app.get("/", (req, res) => {
@@ -41,6 +43,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  connectDB();
   console.log(`Server running on port ${PORT}`);
 });

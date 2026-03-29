@@ -209,3 +209,23 @@ export const toggleFavourite = async (req, res) => {
     });
   }
 };
+
+// @desc    Get logged in user properties
+// @route   GET /api/properties/my
+export const getMyProperties = async (req, res) => {
+  try {
+    const properties = await Property.find({ owner: req.user._id })
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      count: properties.length,
+      properties,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
