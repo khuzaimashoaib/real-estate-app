@@ -239,7 +239,7 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
         type="submit"
         variant="primary"
         size="lg"
-        fullWidth
+        className="w-[20%]! self-end"
         loading={loading}
       >
         Add Property

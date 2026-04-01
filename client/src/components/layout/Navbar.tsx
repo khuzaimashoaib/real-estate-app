@@ -14,7 +14,7 @@ export default function Navbar() {
       className="w-full z-50 sticky top-0"
       style={{ background: "var(--primary)" }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto  py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 no-underline">
           <div
@@ -32,7 +32,6 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
-          
           <Link
             href="/properties"
             className="text-white/60 hover:text-white text-sm transition"
@@ -40,23 +39,20 @@ export default function Navbar() {
             Properties
           </Link>
           <Link
-            href="/properties?type=sale"
+            href="/dashboard"
             className="text-white/60 hover:text-white text-sm transition"
           >
-            Buy
+            Dashboard
           </Link>
-          <Link
-            href="/properties?type=rent"
-            className="text-white/60 hover:text-white text-sm transition"
-          >
-            Rent
-          </Link>
-          <Link
-            href="/about"
-            className="text-white/60 hover:text-white text-sm transition"
-          >
-            About
-          </Link>
+          {user && (
+            <Link
+              href="/favourites"
+              className="text-sm no-underline hover:text-white transition"
+              style={{ color: "rgba(255,255,255,0.7)" }}
+            >
+              Favourites
+            </Link>
+          )}
         </div>
 
         {/* Desktop Auth */}
@@ -72,11 +68,10 @@ export default function Navbar() {
                 href="/dashboard"
                 className="text-sm no-underline"
                 style={{ color: "rgba(255,255,255,0.8)" }}
-                
               >
                 👋 {user.name.split(" ")[0]}
               </Link>
-              
+
               <button
                 onClick={logout}
                 className="text-sm px-4 py-2 rounded-lg cursor-pointer hover:opacity-80 transition"
@@ -98,7 +93,13 @@ export default function Navbar() {
               >
                 Login
               </Link>
-              <Button variant="primary" size="md" fullWidth children="List Property" href="/signup"/>  
+              <Button
+                variant="primary"
+                size="md"
+                fullWidth
+                children="List Property"
+                href="/signup"
+              />
               {/* <Link
                 href="/signup"
                 className="text-sm font-medium px-4 py-2 rounded-lg text-white hover:opacity-90 transition no-underline"
@@ -177,16 +178,7 @@ export default function Navbar() {
           >
             Rent
           </Link>
-          <Link
-            href="/about"
-            className="text-sm py-2 no-underline"
-            style={{
-              color: "rgba(255,255,255,0.8)",
-              borderBottom: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            About
-          </Link>
+
           <div className="flex gap-3 mt-2">
             {user ? (
               <>

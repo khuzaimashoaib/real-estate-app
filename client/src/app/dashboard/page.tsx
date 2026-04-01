@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/src/context/AuthContext";
 import { api } from "@/src/utils/api";
-import { PropertyInterface } from "@/src/components/properties/PropertyCard";
+import PropertyCard, {
+  PropertyInterface,
+} from "@/src/components/properties/PropertyCard";
 import PropertyGrid from "@/src/components/properties/PropertyGrid";
 import PropertyForm from "@/src/components/properties/PropertyForm";
 import EmptyState from "@/src/components/ui/EmptyState";
@@ -57,10 +59,16 @@ export default function DashboardPage() {
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       {/* Header */}
-      <div style={{ background: "var(--primary)" }} className="py-12 px-6">
+      <div
+        style={{ background: "var(--primary-light)" }}
+        className="py-12 px-6"
+      >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--gold)" }}>
+            <p
+              className="text-xs font-semibold uppercase tracking-widest mb-2"
+              style={{ color: "var(--gold)" }}
+            >
               Dashboard
             </p>
             <h1 className="text-4xl font-bold text-white mb-2">
@@ -81,7 +89,6 @@ export default function DashboardPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-
         {/* Add Property Form */}
         {showForm && (
           <div
@@ -89,7 +96,7 @@ export default function DashboardPage() {
             style={{ boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}
           >
             <h2
-              className="text-xl font-bold mb-6"
+              className="text-xl font-bold mb-6 "
               style={{ color: "var(--primary)" }}
             >
               Add New Property
@@ -121,64 +128,19 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {properties.map((property) => (
               <div key={property._id} className="relative">
-                <div
-                  className="absolute top-3 right-3 z-10 flex gap-2"
-                >
+                <div className="absolute top-3 right-3 z-10 flex gap-2">
                   <button
                     onClick={() => handleDelete(property._id)}
-                    className="text-xs font-medium px-3 py-1 rounded-lg hover:opacity-90 transition"
+                    className="text-xs text-white border-none cursor-pointer font-medium px-3 py-1 rounded-lg hover:opacity-90 transition"
                     style={{
                       background: "#DC2626",
-                      color: "white",
-                      border: "none",
-                      cursor: "pointer",
                     }}
                   >
                     Delete
                   </button>
                 </div>
                 {/* Property Card */}
-                <div
-                  className="bg-white rounded-2xl overflow-hidden"
-                  style={{ border: "1px solid var(--border)" }}
-                >
-                  <div
-                    className="relative h-48 flex items-center justify-center"
-                    style={{ background: "var(--primary)" }}
-                  >
-                    {property.images && property.images.length > 0 ? (
-                      <img
-                        src={property.images[0]}
-                        alt={property.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <svg width="60" height="60" viewBox="0 0 16 16" fill="rgba(255,255,255,0.15)">
-                        <path d="M8 1L1 7h2v7h4v-4h2v4h4V7h2z" />
-                      </svg>
-                    )}
-                    <span
-                      className="absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-md"
-                      style={{
-                        background: property.type === "sale" ? "var(--orange)" : "var(--gold)",
-                        color: property.type === "sale" ? "white" : "var(--primary)",
-                      }}
-                    >
-                      {property.type === "sale" ? "For Sale" : "For Rent"}
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-semibold text-base mb-1" style={{ color: "var(--primary)" }}>
-                      {property.title}
-                    </h3>
-                    <p className="text-xs mb-3" style={{ color: "var(--text-muted)" }}>
-                      📍 {property.location.address}, {property.location.city}
-                    </p>
-                    <p className="text-base font-bold" style={{ color: "var(--orange)" }}>
-                      PKR {property.price.toLocaleString()}
-                    </p>
-                  </div>
-                </div>
+                <PropertyCard property={property} />
               </div>
             ))}
           </div>

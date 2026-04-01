@@ -6,7 +6,7 @@ export default function Footer() {
       style={{ background: "var(--primary)" }}
       className="text-white mt-auto"
     >
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto py-12">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
@@ -41,22 +41,6 @@ export default function Footer() {
             <ul className="flex flex-col gap-2">
               <li>
                 <Link
-                  href="/properties?type=sale"
-                  className="text-white/60 hover:text-white text-sm transition"
-                >
-                  Buy Property
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/properties?type=rent"
-                  className="text-white/60 hover:text-white text-sm transition"
-                >
-                  Rent Property
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/dashboard"
                   className="text-white/60 hover:text-white text-sm transition"
                 >
@@ -80,41 +64,33 @@ export default function Footer() {
               style={{ color: "var(--gold)" }}
               className="font-medium text-sm mb-4"
             >
-              Company
+              Quick Links
             </h4>
             <ul className="flex flex-col gap-2">
               <li>
                 <Link
-                  href="/about"
+                  href="/"
                   className="text-white/60 hover:text-white text-sm transition"
                 >
-                  About Us
-                </Link>
-              </li>
-              {/* <li>
-                <Link
-                  href="/contact"
-                  className="text-white/60 hover:text-white text-sm transition"
-                >
-                  Contact
+                  Home{" "}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/privacy"
+                  href="/dashboard"
                   className="text-white/60 hover:text-white text-sm transition"
                 >
-                  Privacy Policy
+                  Dashboard{" "}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/terms"
+                  href="/favourites"
                   className="text-white/60 hover:text-white text-sm transition"
                 >
-                  Terms of Service
+                  Favourites{" "}
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
 

@@ -2,6 +2,7 @@ import express from "express";
 import {
   createProperty,
   deleteProperty,
+  getFavouriteProperties,
   getMyProperties,
   getProperties,
   getProperty,
@@ -18,6 +19,7 @@ router.get("/:id", getProperty);
 router.post("/", protect, createProperty);
 router.put("/:id", protect, updateProperty);
 router.delete("/:id", protect, deleteProperty);
-router.post("/:id/favourite", protect, toggleFavourite);
+router.post("/:id/favourites", protect, toggleFavourite);
+router.get("/favourites", protect, getFavouriteProperties);
 
 export default router;

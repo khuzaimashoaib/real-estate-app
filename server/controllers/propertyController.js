@@ -229,3 +229,26 @@ export const getMyProperties = async (req, res) => {
     });
   }
 };
+
+// @desc    Get favourite properties
+// @route   GET /api/properties/favourites
+export const getFavouriteProperties = async (req, res) => {
+  try {
+    const user = req.user;
+    
+    const properties = await Property.find({
+      _id: { $in: user.favourites }
+    }).populate("owner", "name email phone avatar");
+
+    res.status(200).json({
+      success: true,
+      count: properties.length,
+      properties,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { api } from "@/src/utils/api";
 import { useAuth } from "@/src/context/AuthContext";
-import { PropertyInterface, formatPrice } from "@/src/components/properties/PropertyCard";
+import {
+  PropertyInterface,
+  formatPrice,
+} from "@/src/components/properties/PropertyCard";
 import ContactCard from "@/src/components/properties/ContactCard";
 import PropertyDetailSkeleton from "@/src/components/properties/PropertyDetailSkeleton";
 import PropertyStats from "@/src/components/properties/PropertyStats";
@@ -44,7 +47,7 @@ export default function PropertyDetailPage() {
       router.push("/login");
       return;
     }
-    const data = await api.post(`/api/properties/${id}/favourite`, {});
+    const data = await api.post(`/api/properties/${id}/favourites`, {});
     if (data.success) setIsFavourite(!isFavourite);
   };
 
@@ -52,48 +55,60 @@ export default function PropertyDetailPage() {
 
   if (!property) {
     return (
-       <EmptyState
-      title="Property Not Found"
-      buttonText="Back to Properties"
-      onButtonClick={() => router.push("/properties")}
-    />
+      <EmptyState
+        title="Property Not Found"
+        buttonText="Back to Properties"
+        onButtonClick={() => router.push("/properties")}
+      />
     );
   }
 
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <div className="max-w-7xl mx-auto px-6 py-10">
-
         {/* Back Button */}
         <button
           onClick={() => router.back()}
           className="flex items-center gap-2 text-sm mb-6 hover:opacity-70 transition"
-          style={{ color: "var(--primary)", background: "none", border: "none", cursor: "pointer" }}
+          style={{
+            color: "var(--primary)",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+          }}
         >
           ← Back to Properties
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
           {/* Left */}
           <div className="lg:col-span-2">
-
             {/* Image */}
             <div
               className="w-full h-80 rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden"
               style={{ background: "var(--primary)" }}
             >
               {property.images && property.images.length > 0 ? (
-                <img src={property.images[0]} alt={property.title} className="w-full h-full object-cover" />
+                <img
+                  src={property.images[0]}
+                  alt={property.title}
+                  className="w-full h-full object-cover"
+                />
               ) : (
-                <svg width="80" height="80" viewBox="0 0 16 16" fill="rgba(255,255,255,0.15)">
+                <svg
+                  width="80"
+                  height="80"
+                  viewBox="0 0 16 16"
+                  fill="rgba(255,255,255,0.15)"
+                >
                   <path d="M8 1L1 7h2v7h4v-4h2v4h4V7h2z" />
                 </svg>
               )}
               <span
                 className="absolute top-4 left-4 text-xs font-semibold px-3 py-1 rounded-md"
                 style={{
-                  background: property.type === "sale" ? "var(--orange)" : "var(--gold)",
+                  background:
+                    property.type === "sale" ? "var(--orange)" : "var(--gold)",
                   color: property.type === "sale" ? "white" : "var(--primary)",
                 }}
               >
@@ -104,7 +119,10 @@ export default function PropertyDetailPage() {
             {/* Title + Favourite */}
             <div className="flex justify-between items-start mb-4">
               <div>
-                <h1 className="text-3xl font-bold mb-2" style={{ color: "var(--primary)" }}>
+                <h1
+                  className="text-3xl font-bold mb-2"
+                  style={{ color: "var(--primary)" }}
+                >
                   {property.title}
                 </h1>
                 <p className="text-sm" style={{ color: "var(--text-muted)" }}>
@@ -121,7 +139,10 @@ export default function PropertyDetailPage() {
             </div>
 
             {/* Price */}
-            <div className="text-3xl font-bold mb-6" style={{ color: "var(--orange)" }}>
+            <div
+              className="text-3xl font-bold mb-6"
+              style={{ color: "var(--orange)" }}
+            >
               {formatPrice(property.price)}
             </div>
 
@@ -135,14 +156,12 @@ export default function PropertyDetailPage() {
 
             {/* Description Component */}
             <PropertyDescription description={property.description} />
-
           </div>
 
           {/* Right — Contact Card */}
           <div className="lg:col-span-1">
             <ContactCard owner={property.owner} status={property.status} />
           </div>
-
         </div>
       </div>
     </div>
