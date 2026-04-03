@@ -12,13 +12,12 @@ import ContactCard from "@/src/components/properties/ContactCard";
 import PropertyDetailSkeleton from "@/src/components/properties/PropertyDetailSkeleton";
 import PropertyStats from "@/src/components/properties/PropertyStats";
 import PropertyDescription from "@/src/components/properties/PropertyDescription";
-import Button from "@/src/components/ui/Button";
 import EmptyState from "@/src/components/ui/EmptyState";
 
 export default function PropertyDetailPage() {
   const { id } = useParams();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, updateFavourites } = useAuth();
   const [property, setProperty] = useState<PropertyInterface | null>(null);
   const [loading, setLoading] = useState(true);
   const [isFavourite, setIsFavourite] = useState(false);
@@ -48,7 +47,10 @@ export default function PropertyDetailPage() {
       return;
     }
     const data = await api.post(`/api/properties/${id}/favourites`, {});
-    if (data.success) setIsFavourite(!isFavourite);
+    if (data.success) {
+      setIsFavourite(!isFavourite);
+      updateFavourites(data.favourites);
+    }
   };
 
   if (loading) return <PropertyDetailSkeleton />;
@@ -64,18 +66,12 @@ export default function PropertyDetailPage() {
   }
 
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="bg-(--bg) min-h-screen ">
       <div className="max-w-7xl mx-auto px-6 py-10">
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-sm mb-6 hover:opacity-70 transition"
-          style={{
-            color: "var(--primary)",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-          }}
+          className="flex items-center gap-2 text-sm mb-6 hover:opacity-70 transition text-(--primary) cursor-pointer"
         >
           ← Back to Properties
         </button>
@@ -84,10 +80,7 @@ export default function PropertyDetailPage() {
           {/* Left */}
           <div className="lg:col-span-2">
             {/* Image */}
-            <div
-              className="w-full h-80 rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden"
-              style={{ background: "var(--primary)" }}
-            >
+            <div className="w-full h-80 rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden bg-(--primary)">
               {property.images && property.images.length > 0 ? (
                 <img
                   src={property.images[0]}
@@ -105,12 +98,7 @@ export default function PropertyDetailPage() {
                 </svg>
               )}
               <span
-                className="absolute top-4 left-4 text-xs font-semibold px-3 py-1 rounded-md"
-                style={{
-                  background:
-                    property.type === "sale" ? "var(--orange)" : "var(--gold)",
-                  color: property.type === "sale" ? "white" : "var(--primary)",
-                }}
+                className={`absolute top-4 left-4 text-xs font-semibold px-3 py-1 rounded-md ${property.type === "sale" ? "bg-(--orange) text-white" : "bg-(--gold) text-(--primary)"}`}
               >
                 {property.type === "sale" ? "For Sale" : "For Rent"}
               </span>
@@ -119,30 +107,23 @@ export default function PropertyDetailPage() {
             {/* Title + Favourite */}
             <div className="flex justify-between items-start mb-4">
               <div>
-                <h1
-                  className="text-3xl font-bold mb-2"
-                  style={{ color: "var(--primary)" }}
-                >
+                <h1 className="text-3xl font-bold mb-2 text-(--primary)">
                   {property.title}
                 </h1>
-                <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+                <p className="text-sm text-(--text-muted)">
                   📍 {property.location.address}, {property.location.city}
                 </p>
               </div>
               <button
                 onClick={handleFavourite}
                 className="text-3xl cursor-pointer hover:scale-110 transition"
-                style={{ background: "none", border: "none" }}
               >
                 {isFavourite ? "❤️" : "🤍"}
               </button>
             </div>
 
             {/* Price */}
-            <div
-              className="text-3xl font-bold mb-6"
-              style={{ color: "var(--orange)" }}
-            >
+            <div className="text-3xl font-bold mb-6 text-(--orange)">
               {formatPrice(property.price)}
             </div>
 

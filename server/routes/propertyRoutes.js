@@ -15,11 +15,11 @@ const router = express.Router();
 
 router.get("/", getProperties);
 router.get("/my", protect, getMyProperties);
+router.get("/favourites", protect, getFavouriteProperties);
 router.get("/:id", getProperty);
 router.post("/", protect, createProperty);
 router.put("/:id", protect, updateProperty);
 router.delete("/:id", protect, deleteProperty);
 router.post("/:id/favourites", protect, toggleFavourite);
-router.get("/favourites", protect, getFavouriteProperties);
 
 export default router;

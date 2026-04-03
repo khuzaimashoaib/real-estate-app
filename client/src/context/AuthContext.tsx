@@ -16,12 +16,15 @@ interface AuthContextType {
   loading: boolean;
   setUser: (user: User | null) => void;
   logout: () => Promise<void>;
+  updateFavourites: (favourites: string[]) => void;
+  
 }
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   setUser: () => {},
   logout: async () => {},
+  updateFavourites: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -58,9 +61,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error("Logout failed");
     }
   };
+  const updateFavourites = (favourites: string[]) => {
+  if (user) {
+    setUser({ ...user, favourites });
+  }
+};
 
   return (
-    <AuthContext.Provider value={{ user, loading, setUser, logout }}>
+    <AuthContext.Provider value={{ user, loading, setUser, logout ,updateFavourites}}>
       {children}
     </AuthContext.Provider>
   );
