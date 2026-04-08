@@ -3,8 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer
-      style={{ background: "var(--primary)" }}
-      className="text-white mt-auto"
+      className="text-white mt-auto px-6 bg-(--primary)"
     >
       <div className="max-w-7xl mx-auto py-12">
         {/* Top Section */}

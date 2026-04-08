@@ -11,8 +11,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="w-full z-50 sticky top-0"
-      style={{ background: "var(--primary)" }}
+      className="w-full z-50 sticky top-0 px-6 bg-(--primary)"
     >
       <div className="max-w-7xl mx-auto  py-4 flex items-center justify-between">
         {/* Logo */}

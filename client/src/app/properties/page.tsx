@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { api } from "@/src/utils/api";
-
 import React from "react";
 import PropertyGrid from "@/src/components/properties/PropertyGrid";
-import {  PropertyInterface } from "@/src/components/properties/PropertyCard";
+import { PropertyInterface } from "@/src/components/properties/PropertyCard";
+import HeroSubSec from "@/src/components/sections/HeroSubSec";
 
 export default function PropertiesPage() {
   const [properties, setProperties] = useState<PropertyInterface[]>([]);
@@ -52,29 +52,10 @@ export default function PropertiesPage() {
     fetchProperties();
   };
 
- 
-
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="bg-(--bg) min-h-screen">
       {/* Header */}
-      <div
-        style={{ background: "var(--primary-light)" }}
-        className="py-12 px-6"
-      >
-        <div className="max-w-7xl mx-auto">
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-2"
-            style={{ color: "var(--gold)" }}
-          >
-            Browse
-          </p>
-          <h1 className="text-4xl font-bold text-white mb-2">All Properties</h1>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-            Find your perfect property from our verified listings
-          </p>
-        </div>
-      </div>
-
+      <HeroSubSec />
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Filters */}
         <div
@@ -142,7 +123,7 @@ export default function PropertiesPage() {
               placeholder="Max Price..."
               value={filters.maxPrice}
               onChange={handleFilterChange}
-              className="rounded-lg px-4 py-3 text-sm outline-none"
+              className="rounded-lg px-4 py-3 text-sm outline-none "
               style={{
                 border: "1.5px solid var(--border)",
                 color: "var(--text-dark)",
@@ -150,12 +131,8 @@ export default function PropertiesPage() {
             />
             <button
               onClick={handleSearch}
-              className="text-white font-semibold text-sm py-3 rounded-lg hover:opacity-90 transition"
-              style={{
-                background: "var(--orange)",
-                border: "none",
-                cursor: "pointer",
-              }}
+              className="text-white font-semibold text-sm py-3 rounded-lg hover:opacity-90 transition bg-(--orange) border-0 cursor-pointer"
+              
             >
               Search
             </button>
