@@ -1,12 +1,14 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 
 // Routes
 import authRoutes from "./routes/authRoutes.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js"
 
 // Setup
 dotenv.config({
@@ -32,6 +34,7 @@ app.use(
 // // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
+app.use("/api/upload", uploadRoutes)
 
 connectDB();
 

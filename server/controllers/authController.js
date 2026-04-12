@@ -137,7 +137,7 @@ export const loginUser = async (req, res) => {
 // @route   POST /api/auth/logout
 export const logoutUser = async (req, res) => {
   try {
-    res.cookie("token", "", {
+    res.clearCookie("token", "", {
       secure: true,
       sameSite: "none",
       httpOnly: true,

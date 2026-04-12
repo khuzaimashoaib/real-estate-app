@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "../ui/Button";
 import { api } from "@/src/utils/api";
+import ImageUpload from "../ui/ImageUpload";
 interface PropertyFormProps {
   onSuccess: () => void;
 }
@@ -22,6 +23,7 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -33,6 +35,8 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    console.log("imageUrls:", imageUrls); // ← ye add karo
+    console.log("formData:", formData);
     setError("");
     setLoading(true);
 
@@ -50,7 +54,7 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
         area: Number(formData.area),
         bedrooms: Number(formData.bedrooms),
         bathrooms: Number(formData.bathrooms),
-        images: [],
+        images: imageUrls,
       });
 
       if (!data.success) {
@@ -216,7 +220,7 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
             name="city"
             value={formData.city}
             onChange={handleChange}
-            placeholder="Lahore"
+            placeholder="Karachi"
             required
             style={inputStyle}
           />
@@ -234,6 +238,13 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
           />
         </div>
       </div>
+
+      <ImageUpload
+        onUploadComplete={(urls) => {
+          console.log("Received URLs:", urls);
+          setImageUrls(urls);
+        }}
+      />
 
       <Button
         type="submit"
