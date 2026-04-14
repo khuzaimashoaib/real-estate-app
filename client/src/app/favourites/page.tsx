@@ -7,6 +7,7 @@ import { api } from "@/src/utils/api";
 import { PropertyInterface } from "@/src/components/properties/PropertyCard";
 import PropertyGrid from "@/src/components/properties/PropertyGrid";
 import EmptyState from "@/src/components/ui/EmptyState";
+import HeroSubSec from "@/src/components/sections/HeroSubSec";
 
 export default function FavouritesPage() {
   const { user, loading: authLoading } = useAuth();
@@ -42,20 +43,13 @@ export default function FavouritesPage() {
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       {/* Header */}
-      <div style={{ background: "var(--primary)" }} className="py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--gold)" }}>
-            My Favourites
-          </p>
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Saved Properties
-          </h1>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-            Properties you have saved for later
-          </p>
-        </div>
-      </div>
 
+      <HeroSubSec
+  breadcrumb="Favourites"
+  heading="Saved Properties"
+  subheading=" Properties you have saved for later"
+/>
+     
       <div className="max-w-7xl mx-auto px-6 py-8">
         {loading ? (
           <PropertyGrid properties={[]} loading={true} />

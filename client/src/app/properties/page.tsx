@@ -55,7 +55,11 @@ export default function PropertiesPage() {
   return (
     <div className="bg-(--bg) min-h-screen">
       {/* Header */}
-      <HeroSubSec />
+     <HeroSubSec
+  breadcrumb="Browse"
+  heading="All Properties"
+  subheading="Find your perfect property from our verified listings"
+/>
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Filters */}
         <div

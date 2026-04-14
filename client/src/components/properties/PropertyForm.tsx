@@ -23,7 +23,7 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -35,12 +35,32 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log("imageUrls:", imageUrls); // ← ye add karo
+    // console.log("imageUrls:", imageUrls);
     console.log("formData:", formData);
     setError("");
     setLoading(true);
 
     try {
+      let imageUrls: string[] = [];
+
+      if (imageFiles.length > 0) {
+        const formData = new FormData();
+        imageFiles.forEach((file) => formData.append("images", file));
+
+        const uploadRes = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/upload`,
+          {
+            method: "POST",
+            credentials: "include",
+            body: formData,
+          },
+        );
+        const uploadData = await uploadRes.json();
+        if (uploadData.success) {
+          imageUrls = uploadData.urls;
+        }
+      }
+
       const data = await api.post("/api/properties", {
         title: formData.title,
         description: formData.description,
@@ -239,12 +259,7 @@ export default function PropertyForm({ onSuccess }: PropertyFormProps) {
         </div>
       </div>
 
-      <ImageUpload
-        onUploadComplete={(urls) => {
-          console.log("Received URLs:", urls);
-          setImageUrls(urls);
-        }}
-      />
+      <ImageUpload onFilesChange={(files) => setImageFiles(files)} />
 
       <Button
         type="submit"

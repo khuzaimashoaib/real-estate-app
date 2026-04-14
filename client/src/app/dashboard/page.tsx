@@ -11,6 +11,7 @@ import PropertyGrid from "@/src/components/properties/PropertyGrid";
 import PropertyForm from "@/src/components/properties/PropertyForm";
 import EmptyState from "@/src/components/ui/EmptyState";
 import Button from "@/src/components/ui/Button";
+import HeroSubSec from "@/src/components/sections/HeroSubSec";
 
 export default function DashboardPage() {
   const { user, loading: authLoading } = useAuth();
@@ -57,27 +58,13 @@ export default function DashboardPage() {
   if (authLoading) return null;
 
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="bg-(--bg) min-h-screen">
       {/* Header */}
-      <div
-        style={{ background: "var(--primary-light)" }}
-        className="py-12 px-6"
-      >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div>
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-2"
-              style={{ color: "var(--gold)" }}
-            >
-              Dashboard
-            </p>
-            <h1 className="text-4xl font-bold text-white mb-2">
-              Welcome, {user?.name.split(" ")[0]}! 👋
-            </h1>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-              Manage your property listings
-            </p>
-          </div>
+      <HeroSubSec
+        breadcrumb="Dashboard"
+        heading={` Welcome, ${user?.name.split(" ")[0]}! 👋`}
+        subheading="Manage your property listings"
+        rightContent={
           <Button
             variant="primary"
             size="md"
@@ -85,20 +72,14 @@ export default function DashboardPage() {
           >
             {showForm ? "Cancel" : "+ Add Property"}
           </Button>
-        </div>
-      </div>
+        }
+      />
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Add Property Form */}
         {showForm && (
-          <div
-            className="bg-white rounded-2xl p-8 mb-8"
-            style={{ boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}
-          >
-            <h2
-              className="text-xl font-bold mb-6 "
-              style={{ color: "var(--primary)" }}
-            >
+          <div className="bg-white rounded-2xl p-8 mb-8 shadow-[0_2px_20px_rgba(0,0,0,0.06)]">
+            <h2 className="text-xl font-bold mb-6 text-(--primary)">
               Add New Property
             </h2>
             <PropertyForm onSuccess={handleFormSuccess} />
@@ -107,10 +88,8 @@ export default function DashboardPage() {
 
         {/* My Properties */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold" style={{ color: "var(--primary)" }}>
-            My Properties
-          </h2>
-          <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+          <h2 className="text-xl font-bold text-(--primary)">My Properties</h2>
+          <p className="text-sm text-(--text-muted)">
             {properties.length} listings
           </p>
         </div>
@@ -131,10 +110,7 @@ export default function DashboardPage() {
                 <div className="absolute top-3 right-3 z-10 flex gap-2">
                   <button
                     onClick={() => handleDelete(property._id)}
-                    className="text-xs text-white border-none cursor-pointer font-medium px-3 py-1 rounded-lg hover:opacity-90 transition"
-                    style={{
-                      background: "#DC2626",
-                    }}
+                    className="text-xs text-white bg-[#DC2626] border-none cursor-pointer font-medium px-3 py-1 rounded-lg hover:opacity-90 transition"
                   >
                     Delete
                   </button>

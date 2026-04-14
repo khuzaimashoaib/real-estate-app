@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/src/context/AuthContext";
 import Button from "../ui/Button";
+import Image from "next/image";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,9 +21,8 @@ export default function Navbar() {
             className="w-8 h-8 rounded-lg flex items-center justify-center"
             style={{ background: "var(--orange)" }}
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
-              <path d="M8 1L1 7h2v7h4v-4h2v4h4V7h2z" />
-            </svg>
+            <Image src="svg-icons/home.svg" alt="logo" width={26} height={22} />
+            
           </div>
           <span className="text-white font-bold text-lg">
             bin<span style={{ color: "var(--gold)" }}>Adim</span>
