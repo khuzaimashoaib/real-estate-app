@@ -6,6 +6,7 @@ import { api } from "@/src/utils/api";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/src/context/AuthContext";
 import Button from "@/src/components/ui/Button";
+import Image from "next/image";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -60,9 +61,12 @@ export default function SignupPage() {
               className="w-9 h-9 rounded-lg flex items-center justify-center"
               style={{ background: "var(--orange)" }}
             >
-              <svg width="18" height="18" viewBox="0 0 16 16" fill="white">
-                <path d="M8 1L1 7h2v7h4v-4h2v4h4V7h2z" />
-              </svg>
+              <Image
+                src="svg-icons/home.svg"
+                alt="logo"
+                width={26}
+                height={22}
+              />
             </div>
             <span
               className="font-bold text-xl"
